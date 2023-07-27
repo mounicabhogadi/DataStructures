@@ -24,3 +24,9 @@ while x >= 0:
     else:
         print(f"{x} is odd")
     x -= 1
+
+# reverse using for loop
+x = int(input())
+for i in range(x, -1, -1):
+    if i % 2 == 0:
+        print(i)
