@@ -1,6 +1,6 @@
 class Reversearray:
 
-    def reverseWithTemp(self,arr):
+    def reverseWithTemp(self, arr):
         #O(n) for time and space
         start_pos = 0
         end_pos = len(arr)-1
