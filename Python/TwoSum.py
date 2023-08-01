@@ -38,7 +38,7 @@ for key in dict_of_number:
         print(dict_of_number[key], dict_of_number[target - key])
         break
 
-# 3 using function and return statement (leetcode submission)
+# 3 using function and return statement
 
 def twoSum(self, nums: List[int], target: int) -> List[int]:
     found = False
@@ -50,3 +50,15 @@ def twoSum(self, nums: List[int], target: int) -> List[int]:
                 break
         if found:
             break
+
+
+# efficient solution
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        numDict = {}
+        for i,num in enumerate(nums):
+            rem = target - num
+            if rem in numDict:
+                return [i,numDict[rem]]
+            else:
+                numDict[num]=i
