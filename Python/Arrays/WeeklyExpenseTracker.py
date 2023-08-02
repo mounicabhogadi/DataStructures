@@ -10,13 +10,14 @@ print(weekly_expenses)
 highest_expense = max(weekly_expenses)
 lowest_expense = min(weekly_expenses)
 print(f"Highest and Lowest expenses are: {highest_expense}, {lowest_expense}")
-average_expense = sum(weekly_expenses)/len(weekly_expenses)
+average_expense = sum(weekly_expenses) / len(weekly_expenses)
 total_expense = sum(weekly_expenses)
 print(f"Average weekly expense: {average_expense}")
 print(f"Total weekly expense: {total_expense}")
 print("\n")
 
-#2
+
+# 2
 
 print("#Second solution#")
 
@@ -29,8 +30,9 @@ for i in weekly_expenses:
     elif i < lowest:
         lowest = i
     total += i
-    average = total / len(weekly_expenses)
 
-print("Highest and Lowest expenses are:", highest,",", lowest)
+average = total / len(weekly_expenses)
+
+print("Highest and Lowest expenses are:", highest, ",", lowest)
 print(f"Average weekly expense:", average)
 print(f"Total weekly expense:", total)
