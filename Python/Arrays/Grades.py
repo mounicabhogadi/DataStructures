@@ -53,3 +53,13 @@ for grade in grades:
 
 print(f"Pass count: {len(grades) - fail_count}")
 print(f"Fail count: {fail_count}")
+
+
+# subgrades
+
+sub_array = grades[2:5]
+print(sub_array)
+
+# deleting a sub array
+del grades[2:3]
+print(grades)
