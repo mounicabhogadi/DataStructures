@@ -10,5 +10,15 @@ for student in students_dict:
     science_score = student["science"]
     english_score = student["english"]
     average = (math_score + science_score + english_score) / 3
-
+    student["average"] = average
     print(f"Average marks of {name}: {average}")
+print(students_dict)
+
+
+# for student in students_dict:
+#     name = student["name"]
+#     total = (student["math"] + student["science"] + student["english"])
+#     count = len(student.keys())-1
+#     student["average"] = total // count
+#     print(f"Average marks of {name}: {average}")
+# print(students_dict)
