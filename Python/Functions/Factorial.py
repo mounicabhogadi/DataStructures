@@ -37,3 +37,25 @@ def factorial_best(num):
 num = 5
 output = factorial_best(num)
 print(', '.join(output))
+
+
+
+
+# O(n)
+def facthw(n):
+    num_array = []
+    for i in range(0, n + 1):
+        num_array.append(i)
+
+    fact = 1
+    fact_result_array = []
+    for j in num_array:
+        if j == 0:
+            fact_result_array.append(1)
+        else:
+            fact = fact * j
+            fact_result_array.append(fact)
+    return fact_result_array
+
+
+print(facthw(6))
