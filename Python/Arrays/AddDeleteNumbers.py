@@ -18,5 +18,6 @@ print(f"Numbers: {numbers} ")
 
 
 #remove
+
 numbers.remove(2)
 print(f"Numbers: {numbers} ")

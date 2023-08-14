@@ -33,7 +33,6 @@ def factorial_best(num):
 
     return result
 
-
 num = 5
 output = factorial_best(num)
 print(', '.join(output))
