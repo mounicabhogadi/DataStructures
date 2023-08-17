@@ -9,8 +9,15 @@
 fp = open("C:\\Users\\mouni\\IdeaProjects\\datastructures\\Python\\Files\\students.txt", "r")
 print(fp.read())
 fp.close()
-# import os
-# print(os.path.join("users", "mouni"))
 
 
+import os
+print(os.path.join("users", "mouni"))
+
+
+# # /
+# print("users\mouni")
+# fp = open("C:\\Users\\mouni\\IdeaProjects\\datastructures\\Python\\Files\\students.txt", "r")
+#
+# print("Users/sainanduri/python")
 
