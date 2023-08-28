@@ -8,11 +8,7 @@
 import pprint
 from tabulate import tabulate
 import argparse
-
-task_dict = {"task1":{"description":"Description of task1",
-                      "status": "created",
-                      "due_date": ""}
-             }
+import csv
 
 
 def check_for_empty_or_none(*args):
@@ -31,6 +27,7 @@ def add_task(name, desc, due_date):
                  "status": "created",
                  "due_date": due_date}
     task_dict[name] = temp_dict
+    save_todo_list()
 
 
 def update_task(name, key, value):
@@ -41,10 +38,12 @@ def update_task(name, key, value):
         raise ValueError(f"{key} not found in task details")
     task_dict[name][key] = value
     print(f"Updated {key} with {value} for the {name}")
+    save_todo_list()
 
 
 def complete_task(name):
     update_task(name, key="status", value="completed")
+    save_todo_list()
 
 
 def display_tasks():
@@ -56,12 +55,49 @@ def display_tasks():
     print(tabulate(rows, headers=headers, tablefmt="fancy_grid"))
 
 
+def save_todo_list():
+    fieldnames = ["task_name", "task_description", "task_due_date", "task_status"]
+    rows = []
+    for task in task_dict:
+        row = {
+            "task_name": task,
+            "task_description": task_dict[task]["description"],
+            "task_due_date": task_dict[task]["due_date"],
+            "task_status": task_dict[task]["status"]
+        }
+        rows.append(row)
+    with open("tasks.csv", 'w', newline='') as csv_file:
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+
+        # Write the header row
+        writer.writeheader()
+
+        # Write data rows
+        writer.writerows(rows)
+
+
+def initialize_todo_list():
+    initial_task_dict = {}
+    with open('tasks.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            temp_dict = {"description": row['task_description'],
+                         "status": row['task_status'],
+                         "due_date": row['task_due_date']}
+            initial_task_dict[row['task_name']] = temp_dict
+            print(row['task_name'], row['task_description'], row['task_due_date'], row['task_status'])
+
+    return initial_task_dict
+
+
+task_dict = initialize_todo_list()
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         prog='To-Do List',
         description='this program keeps track of to-do list')
     parser.add_argument('action', choices=['add_task', 'update_task_desc', 'update_task_due_date', 'complete_task',
-                                            'display_todo_list'],
+                                           'display_todo_list', 'save_todo_list'],
                         help="To-Do List choices")
     parser.add_argument('--task_name', type=str, help="Name of the task")
     parser.add_argument('--task_description', type=str, help="Description of the task", default=None)
@@ -81,7 +117,5 @@ if __name__ == '__main__':
         display_tasks()
     elif args.action == "display_todo_list":
         display_tasks()
-
-
-
-
+    elif args.action == "save_todo_list":
+        save_todo_list()
