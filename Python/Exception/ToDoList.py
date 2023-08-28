@@ -46,6 +46,7 @@ def update_task(name, key, value):
 def complete_task(name):
     update_task(name, key="status", value="completed")
 
+
 def display_tasks():
     headers = ["Task Name", "Description", "Due Date", "Status"]
     rows = []
