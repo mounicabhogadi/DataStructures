@@ -1,45 +1,57 @@
-# strings are not empty or None.
-class Solution:
-    def check_for_rotation(self, str1, str2):
-        if len(str1) != len(str2):
-            return False
+class Node:
+    def __init__(self, data, next_node=None):
+        self.data = data
+        self.next_node = next_node
 
-        for r1 in range(len(str2)):
-            if str1 == self.rotation(str2, r1):
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def add(self, node):
+        if self.head is None:
+            self.head = node
+            return
+        temp = self.head
+        while temp.next_node is not None:
+            temp = temp.next_node
+        temp.next_node = node
+
+    def search(self,data):
+        temp = self.head
+        while temp is not None:
+            if temp.data == data:
                 return True
-        return False
-
-    def rotation(self, str, rnumber):
-        # rotation logic
-        rotated_str = str[(len(str) - rnumber):] + str[:len(str) - rnumber]
-        return rotated_str
-
-    def new_check(self, str1, str2):
-        if len(str1) != len(str2):
-            return False
-        temp_str = str1 + str1
-        if str2 in temp_str:
-            return True
-        else:
-            return False
-
-    def isSubstring(self, str1, str2):
-        str1_start_pos = 0
-        str2_start_pos = 0
-        while str1[str1_start_pos] != str2[str2_start_pos]:
-            str2_start_pos += 1
-        while str1_start_pos < len(str1):
-            if str1[str1_start_pos] != str2[str2_start_pos]:
-                return False
-            str1_start_pos += 1
-            str2_start_pos += 1
+            temp = temp.next_node
         return False
 
 
+    def display(self):
+        temp = self.head
+        while temp is not None:
+            print(f"{temp.data}---->",end='')
+            temp = temp.next_node
+        print("/",end='')
 
-if __name__ == '__main__':
-    sol = Solution()
-    if sol.new_check("waterbottle", "erbottlewat"):
-        print("Rotations")
-    else:
-        print("Not Rotations")
+    def update(self,data,updated_data):
+        temp = self.head
+        while temp is not None:
+            if temp.data == data:
+                temp.data=updated_data
+                return
+            temp = temp.next_node
+        raise ValueError(f"{data} not found in linked list")
+
+    def delete(self,data):
+        if self.head.data == data:
+            self.head = self.head.next_node
+            return
+        temp = self.head.next_node
+        prev = self.head
+        while temp is not None:
+            if temp.data == data:
+                prev.next_node = temp.next_node
+                return
+            prev=temp
+            temp=temp.next_node
+        raise ValueError(f"{data} not found in linked list")
