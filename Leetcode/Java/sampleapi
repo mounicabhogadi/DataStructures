@@ -1,0 +1,32 @@
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class SimpleApiExample {
+
+    public static void main(String[] args) {
+        // Specify the API endpoint URL
+        String apiUrl = "https://jsonplaceholder.typicode.com/todos/1";
+
+        // Create an instance of HttpClient
+        HttpClient httpClient = HttpClient.newHttpClient();
+
+        // Create an HttpRequest with the GET method and the API URL
+        HttpRequest httpRequest = HttpRequest.newBuilder()
+                .uri(URI.create(apiUrl))
+                .GET()
+                .build();
+
+        try {
+            // Send the HttpRequest and receive the HttpResponse
+            HttpResponse<String> httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+
+            // Print the response code and body
+            System.out.println("Response Code: " + httpResponse.statusCode());
+            System.out.println("Response Body: " + httpResponse.body());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
